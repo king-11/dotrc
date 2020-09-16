@@ -3,6 +3,7 @@
 source ~/scripts/zsh-interactive-cd.zsh
 source ~/scripts/coloured-man-pages.zsh
 source ~/scripts/zsh-autosuggestions.zsh
+source ~/scripts/yarn-completion.zsh
 # Set up the prompt
 
 autoload -Uz promptinit
@@ -15,8 +16,8 @@ setopt histignorealldups sharehistory
 bindkey -e
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=300
+SAVEHIST=500
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -28,6 +29,7 @@ done
 
 compinit -C
 
+eval "$(starship init zsh)"
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -47,17 +49,26 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 neofetch --ascii_distro archlinux
-
+#load ssh keys
+eval $(keychain --eval -q ~/.ssh/github_rsa ~/.ssh/heroku_rsa)
 
 export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-nvm_load () { . $NVM_DIR/nvm.sh && . $NVM_DIR/bash_completion; }
-alias node='unalias nvm; unalias node; unalias npm; unalias npx; unalias yarn; nvm_load; node $@'
-alias npm='unalias nvm; unalias node; unalias npm; unalias npx; unalias yarn; nvm_load; npm $@'
-alias nvm='unalias nvm; unalias node; unalias npm; unalias npx; unalias yarn; nvm_load; nvm $@'
-alias npx='unalias nvm; unalias node; unalias npm; unalias npx; unalias yarn; nvm_load; npx $@'
-alias yarn='unalias nvm; unalias node; unalias npm; unalias npx; unalias yarn; nvm_load; yarn $@'
+NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+NODE_GLOBALS+=(node nvm yarn)
 
-eval "$(starship init zsh)"
+_load_nvm() {
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "function ${cmd}(){ unset -f ${NODE_GLOBALS[*]}; _load_nvm; unset -f _load_nvm; ${cmd} \$@; }"
+done
+unset cmd NODE_GLOBALS
+
+export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export PATH=$PATH:$JAVA_HOME/bin
+export PATH="$PATH:$HOME/.yarn/bin"
