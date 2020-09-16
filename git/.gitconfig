@@ -17,3 +17,5 @@
     pretty = cat-file -p
     lg = log --graph
     ol = log --oneline
+[commit]
+	template = /home/target-x/scripts/git/gitmessage
