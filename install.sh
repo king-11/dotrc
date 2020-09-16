@@ -1,7 +1,9 @@
+#!/bin/zsh
+
 function git_install(){
     sudo apt install git
     git config --global user.name "Lakshya Singh"
-    git config --gloabl user.email "lakshay.singh1108@gmail.com"
+    git config --global user.email "lakshay.singh1108@gmail.com"
     sudo apt install ~/Downloads/gh_*_linux_amd64.deb
     cp ~/scripts/git/.gitconfig ~/
 }
@@ -20,13 +22,13 @@ function python_setup(){
 }
 
 function utilities_install(){
-    sudo apt install stacer build-essential git fzf vim ssss snapd
+    sudo apt install stacer build-essential git fzf ssss snapd
     sudo apt-get install xclip fonts-powerline
     sudo apt install espeak neofetch figlet stacer build-essential nmap htop
 }
 
 function debug_tools_install(){
-    sudo apt-get insall net-tools g++ clang valgrind ping traceroute keychain
+    sudo apt-get install net-tools g++ clang valgrind iputils-ping traceroute keychain
 }
 
 function snap_packages_install(){
@@ -46,7 +48,6 @@ function node_setup(){
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt update && sudo apt install --no-install-recommends yarn
     yarn add global gitignore express-generator typescript
-
 }
 
 function flutter_setup(){
@@ -58,6 +59,44 @@ function flutter_setup(){
 
 function downloads_install() {
     cd Downloads
-    sudo apt install ./Insomnia.Core-*.deb ./mongodb-compass_*_amd64.deb ./teams_*_amd64.deb ./teamviewer_*_amd64.deb ./discord-*.deb ./bat_*_amd64.deb
-    sudo ./VMware-Player-*.x86_64.bundle
+    sudo apt install ~/Downloads/Insomnia.Core-*.deb ~/Downloads/mongodb-compass_*_amd64.deb ~/Downloads/teams_*_amd64.deb ~/Downloads/teamviewer_*_amd64.deb ~/Downloads/discord-*.deb ~/Downloads/bat_*_amd64.deb
+    sudo ~/Downloads/VMware-Player-*.x86_64.bundle
 }
+
+function poetry_install() {
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+    poetry completions zsh > ~/.zfunc/_poetry
+    # add fpath += ~/.zfunc before compinit
+    poetry self update
+}
+
+function vim_setup() {
+    sudo apt install vim
+    git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+    sh ~/.vim_runtime/install_awesome_vimrc.sh
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
+
+function mongo_setup() {
+    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+    sudo apt-get install gnupg
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+    sudo apt-get update && sudo apt-get install -y mongodb-org
+    ps --no-headers -o comm 1
+    sudo systemctl start mongod
+    sudo systemctl status mongod
+    sudo systemctl enable mongod
+}
+
+git_install
+brave_install
+utilities_install
+python_setup
+debug_tools_install
+snap_packages_install
+node_setup
+flutter_setup
+downloads_install
+poetry_install
+vim_setup
+mongo_setup
