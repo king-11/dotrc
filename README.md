@@ -8,6 +8,7 @@ My OS and Terminal Configuration with complete install instructions. The reposit
 - yarn-completion
 - zsh-autosuggestions
 - zsh-interactive-cd
+- zsh-syntax-highlighting
 - blazing fast spaceship prompt
 - lazy loaded nvm
 
@@ -16,7 +17,7 @@ My OS and Terminal Configuration with complete install instructions. The reposit
 - Template for Commits
 - name
 - email
-- editor vim
+- editor neovim
 - autocorrect 10
 - aliases
 
@@ -51,7 +52,7 @@ My OS and Terminal Configuration with complete install instructions. The reposit
  
 <h2 align="center"> Utility Packages </h2>
 
-- Debugging packages include:
+- Debugging packages include
 ```zsh
 sudo apt-get insall net-tools g++ clang valgrind ping traceroute
 sudo apt install build-essential nmap htop
