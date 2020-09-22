@@ -48,6 +48,7 @@ function node_setup(){
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt update && sudo apt install --no-install-recommends yarn
     yarn add global gitignore express-generator typescript
+    npm install --global hyper
 }
 
 function flutter_setup(){
@@ -70,11 +71,12 @@ function poetry_install() {
     poetry self update
 }
 
-function vim_setup() {
-    sudo apt install vim
-    git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
-    sh ~/.vim_runtime/install_awesome_vimrc.sh
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+function nvim_setup() {
+    sudo apt-get install neovim
+    mkdir -p ~/.config/nvim
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \\n    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    cp -r ~/scripts/nvim/init.vim ./config/nvim/
+    nvim +PlugInstall
 }
 
 function mongo_setup() {
@@ -98,5 +100,5 @@ node_setup
 flutter_setup
 downloads_install
 poetry_install
-vim_setup
+nvim_setup
 mongo_setup

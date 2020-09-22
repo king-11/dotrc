@@ -3,7 +3,7 @@
 source ~/scripts/zsh-interactive-cd.zsh
 source ~/scripts/coloured-man-pages.zsh
 source ~/scripts/zsh-autosuggestions.zsh
-source ~/scripts/yarn-completion.zsh
+source ~/scripts/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Set up the prompt
 
 autoload -Uz promptinit
