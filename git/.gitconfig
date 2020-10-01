@@ -2,7 +2,7 @@
 	name = Lakshya Singh
 	email = lakshay.singh1108@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 	username = Lakshya Singh
 	name = Lakshya Singh
 [help]
@@ -17,5 +17,8 @@
     pretty = cat-file -p
     lg = log --graph
     ol = log --oneline
+    ad = add -p
+    rbi = rebase -i
+    rb = rebase
 [commit]
 	template = /home/target-x/scripts/git/gitmessage
