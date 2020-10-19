@@ -6,18 +6,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-function! DoRemote(arg)
-      UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-
 "Javascript Plugins
-Plug 'carlitux/deoplete-ternjs'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-
-Plug 'zchee/deoplete-clang'
-Plug 'deoplete-plugins/deoplete-jedi'
-
 call plug#end()
 
 if (has("termguicolors"))
