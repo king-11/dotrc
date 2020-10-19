@@ -7,18 +7,18 @@
 	name = Lakshya Singh
 [help]
 	autocorrect = 10
-
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    br = branch
-    type = cat-file -t
-    pretty = cat-file -p
-    lg = log --graph
-    ol = log --oneline
-    ad = add -p
-    rbi = rebase -i
-    rb = rebase
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	type = cat-file -t
+	pretty = cat-file -p
+	lg = log --graph
+	ol = log --oneline
+	ad = add -p
+	dfs = diff --staged
+	df = diff
+	rs = reset
 [commit]
 	template = /home/target-x/scripts/git/gitmessage
