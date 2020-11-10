@@ -18,8 +18,8 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=500
+HISTSIZE=2000
+SAVEHIST=2000
 #export EDITOR=/usr/bin/nano
 #export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
@@ -195,12 +195,6 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
 esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-fpath=($fpath "/home/targetx/.zfunctions")
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-
 #neofetch setup
 neofetch --ascii_distro archlinux
 
@@ -227,3 +221,10 @@ eval $(keychain --eval -q ~/.ssh/github_rsa ~/.ssh/heroku_rsa)
 #plugins
 source ~/scripts/zsh-interactive-cd.zsh
 source ~/scripts/coloured-man-pages.zsh
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+fpath=($fpath "/home/targetx/.zfunctions")
+
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
