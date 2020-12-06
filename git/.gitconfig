@@ -10,7 +10,6 @@
 [alias]
 	co = checkout
 	ci = commit
-	st = status
 	br = branch
 	type = cat-file -t
 	pretty = cat-file -p
@@ -19,6 +18,20 @@
 	ad = add -p
 	dfs = diff --staged
 	df = diff
+	db = branch -D
+	last = log -1 HEAD
+	pur = pull --rebase=merges upstream
+	pu = pull upstream
+	ra = rebase --abort
+	rc = rebase --continue
+	pof = push origin --force-with-lease
+	po = push origin
 	rs = reset
+	rhh = reset --hard HEAD
+	rh = reset --hard
+	s = status -s
+	
 [commit]
-	template = /home/target-x/scripts/git/gitmessage
+	template = /home/targetx/scripts/git/gitmessage
+[pull]
+	ff = only
