@@ -1,12 +1,13 @@
-#!/bin/zsh
+#!/bin/bash
 
 function initial_setup(){
   sudo systemctl enable fstrim.timer
   sudo pacman-mirrors --fasttrack
-  sudo pacman-db-upgrade && syn
+  sudo pacman-db-upgrade
+  sudo pacman -Rns firefox thunderbird
   sudo pacman -Syu
-  sudo pacman -S git yay gufw
-  sudo echo "kdesu python3 /usr/lib/python3.8/site-packages/gufw/gufw.py" >> /bin/gufw
+  sudo pacman -S git yay gufw gnome-keyring seahorse
+  #sudo echo "kdesu python3 /usr/lib/python3.8/site-packages/gufw/gufw.py" >> /bin/gufw
 }
 
 function git_install() {
@@ -16,29 +17,23 @@ function git_install() {
   cp ~/scripts/git/.gitconfig ~/
 }
 
-function brave_install(){
-  sudo pacman -S brave
-}
-
-function python_setup(){
-  sudo pacman -S python-pip postgresql python-opengl pyenv
-  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-  poetry completions zsh > ~/.zfunc/_poetry
-}
-
-function zsh_install(){
-  yay -S zsh zsh-completions
-  zsh --version
-  chsh -s $(which zsh)
-}
-
-function ide_setup(){
-  sudo pacman -S neovim alacritty
-  yay -S visual-studio-code-bin insomnia-bin
-}
-
-function utility_programs(){
-  sudo pacman -S etcher neofetch teamviewer fzf htop xclip curl bat mdcat latte-dock
+function necessary_functions(){
+  sudo pacman -S base-devel binutils make curl gcc clang gdb keychain gnoome-keyring
+  sudo pacman -S tlp powertop
+  sudo systemctl enable tlp.service
+  # sudo tee /etc/systemd/system/powertop.service\
+  # [Unit]\
+  # Description=PowerTOP auto tune\
+  # \
+  # [Service]\
+  # Type=idle\
+  # Environment="TERM=dumb"\
+  # ExecStart=/usr/sbin/powertop --auto-tune\
+  # \
+  # [Install]\
+  # WantedBy=multi-user.target\
+  systemctl daemon-reload
+  systemctl enable --now powertop.service
 }
 
 function codecs(){
@@ -46,29 +41,11 @@ function codecs(){
   sudo pacman -S vlc
 }
 
-function necessary_functions(){
-  sudo pacman -S base-devel binutils make curl gcc clang gdb keychain gnoome-keyring
-  sudo pacman -S tlp powertop
-  sudo systemctl enable tlp.service
-  cat << EOF | sudo tee /etc/systemd/system/powertop.service\
-  [Unit]\
-  Description=PowerTOP auto tune\
-  \
-  [Service]\
-  Type=idle\
-  Environment="TERM=dumb"\
-  ExecStart=/usr/sbin/powertop --auto-tune\
-  \
-  [Install]\
-  WantedBy=multi-user.target\
-EOF
-  systemctl daemon-reload
-  systemctl enable --now powertop.service
-}
-
-function social_platforms(){
-  sudo pacman -S skypeforlinux-stable-bin teamviewer
-  yay -S discord wps-office teams gitter-bin stacer-bin slack-desktop
+function python_setup(){
+  sudo pacman -S python-pip postgresql python-opengl pyenv
+  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+  mkdir ~/.zfunc
+  poetry completions zsh > ~/.zfunc/_poetry
 }
 
 function node_setup(){
@@ -79,14 +56,35 @@ function node_setup(){
   npm install -g gitignore express-generator typescript firebase-tools
 }
 
-function flutter(){
-  sudo pacman -S dart
-  mkdir -p .development
-  cd ~/.development
-  tar xf ~/Downloads/flutter_linux_1.22.0-stable.tar.xz
-  git clone https://github.com/flutter/flutter.git
-  export PATH="$PATH:`pwd`/flutter/bin"
-  flutter precache
+function ruby_setup(){
+  yay -S rbenv ruby-build
+}
+
+function shell(){
+  yay -S zsh zsh-completions alacritty starship
+  zsh --version
+  chsh -s $(which zsh)
+}
+
+function brave_install(){
+  sudo pacman -S brave
+}
+
+function ide_setup(){
+  yay -S neovim visual-studio-code-bin insomnia-bin
+}
+
+function utility_programs(){
+  yay -S etcher neofetch fzf htop xclip bat mdcat
+  sudo snap install heroku --classic
+}
+
+function display() {
+  yay -S ulauncher awesome-terminal-fonts kvantnum-qt5 latte-dock
+}
+
+function social_platforms(){
+  yay -S skypeforlinux-stable-bin teamviewer telegram-desktop discord wps-office teams gitter-bin stacer-bin slack-desktop
 }
 
 function docker_setup(){
@@ -102,4 +100,14 @@ function docker_setup(){
 function mongo_setup(){
   yay -S mongodb-tools-bin mongodb-bin mongodb-compass
   # sudo systemctl enable --now mongodb.service
+}
+
+function flutter(){
+  sudo pacman -S dart
+  mkdir -p .development
+  cd ~/.development
+  tar xf ~/Downloads/flutter_linux_1.22.0-stable.tar.xz
+  git clone https://github.com/flutter/flutter.git
+  export PATH="$PATH:`pwd`/flutter/bin"
+  flutter precache
 }
