@@ -38,6 +38,7 @@ function necessary_functions(){
 
 function codecs(){
   sudo pacman -S exfat-utils fuse-exfat a52dec faac faad2 flac jasper lame libdca libdv gst-libav libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gstreamer0.10-plugins flashplugin libdvdcss libdvdread libdvdnav gecko-mediaplayer dvd+rw-tools dvdauthor dvgrab
+  sudo pacman -Sy libxau libxi libxss libxtst libxcursor libxcomposite libxdamage libxfixes libxrandr libxrender mesa-libgl  alsa-lib libglvnd
   sudo pacman -S vlc
 }
 
@@ -110,4 +111,11 @@ function flutter(){
   git clone https://github.com/flutter/flutter.git
   export PATH="$PATH:`pwd`/flutter/bin"
   flutter precache
+}
+
+function vmware(){
+	yay -S fuse-2 gtkmn linux-headers ncurses libcanberra pcsclite
+	sudo ~/Downloads/App\ Images/VMware-Player-*.x86_64.bundle  
+	sudo modprobe vmnet && sudo vmware-networks --start
+	sudo modprobe -a vmw_vmci vmmon
 }
