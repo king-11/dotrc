@@ -62,9 +62,10 @@ function ruby_setup(){
 }
 
 function shell(){
-  yay -S zsh zsh-completions alacritty starship
+  yay -S zsh zsh-completions alacritty
   zsh --version
   chsh -s $(which zsh)
+  yay -S starship
 }
 
 function brave_install(){
@@ -76,7 +77,7 @@ function ide_setup(){
 }
 
 function utility_programs(){
-  yay -S etcher neofetch fzf htop xclip bat mdcat
+  yay -S etcher neofetch fzf htop xclip bat mdcat freeoffice firefox-developer-edition stacer-bin
   sudo snap install heroku --classic
 }
 
@@ -85,7 +86,7 @@ function display() {
 }
 
 function social_platforms(){
-  yay -S skypeforlinux-stable-bin teamviewer telegram-desktop discord wps-office teams gitter-bin stacer-bin slack-desktop
+  yay -S skypeforlinux-stable-bin teamviewer telegram-desktop discord wps-office teams gitter-bin slack-desktop
 }
 
 function docker_setup(){
