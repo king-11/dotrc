@@ -6,15 +6,16 @@ function initial_setup(){
   sudo pacman-db-upgrade
   sudo pacman -Rns firefox thunderbird
   sudo pacman -Syu
-  sudo pacman -S git yay gufw gnome-keyring seahorse
+  sudo pacman -S git yay gufw gnome-keyring seahorse gnupg
   #sudo echo "kdesu python3 /usr/lib/python3.8/site-packages/gufw/gufw.py" >> /bin/gufw
 }
 
 function git_install() {
-  git config --global user.name "Lakshya Singh"
-  git config --global user.email "lakshay.singh1108@gmail.com"
   sudo pacman -S github-cli
   cp ~/scripts/git/.gitconfig ~/
+  gpg --import ~/.ssh/gpg-github.asc
+  gpg --import ~/.ssh/gpg-github.pub.asc
+  #gpg --edit-key <LONGID> ; gpg --list-secret-keys --keyid-format LONG ;copy sec second line
 }
 
 function necessary_functions(){
