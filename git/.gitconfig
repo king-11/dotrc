@@ -6,32 +6,42 @@
 	username = Lakshya Singh
 	name = Lakshya Singh
 [help]
-	autocorrect = 10
+	autocorrect = 100
 [alias]
 	co = checkout
 	ci = commit
+	ca = commit -v --amend
 	br = branch
+	bd = branch -D
 	type = cat-file -t
 	pretty = cat-file -p
 	lg = log --graph
-	ol = log --oneline
+	ol = log --pretty=oneline --graph --decorate --all
 	ad = add -p
+	aa = add .
 	dfs = diff --staged
 	df = diff
-	db = branch -D
 	last = log -1 HEAD
-	pur = pull --rebase=merges upstream
 	pu = pull upstream
 	ra = rebase --abort
 	rc = rebase --continue
 	pof = push origin --force-with-lease
 	po = push origin
 	rs = reset
-	rhh = reset --hard HEAD
+	rhh = reset --hard HEAD^
 	rh = reset --hard
 	s = status -s
 	
 [commit]
-	template = /home/targetx/scripts/git/gitmessage
+	template = ~/scripts/git/gitmessage
 [pull]
 	ff = only
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
