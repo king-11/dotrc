@@ -78,16 +78,16 @@ function ide_setup(){
 }
 
 function utility_programs(){
-  yay -S etcher neofetch fzf htop xclip bat mdcat freeoffice firefox-developer-edition stacer-bin
+  yay -S etcher fzf xclip bat mdcat firefox-developer-edition stacer-bin procs ripgrep tokei ytop-bin unrar tree exa ffprobe ffmpeg
   sudo snap install heroku --classic
 }
 
 function display() {
-  yay -S ulauncher awesome-terminal-fonts kvantnum-qt5 latte-dock
+  yay -S ulauncher awesome-terminal-fonts kvantnum-qt5 latte-dock ttf-ms-fonts
 }
 
 function social_platforms(){
-  yay -S skypeforlinux-stable-bin teamviewer telegram-desktop discord wps-office teams gitter-bin slack-desktop
+  yay -S skypeforlinux-stable-bin teamviewer telegram-desktop discord wps-office teams gitter-bin slack-desktop libreoffice-fresh-en-gb
 }
 
 function docker_setup(){
@@ -117,7 +117,7 @@ function flutter(){
 
 function vmware(){
 	yay -S fuse-2 gtkmn linux-headers ncurses libcanberra pcsclite
-	sudo ~/Downloads/App\ Images/VMware-Player-*.x86_64.bundle  
+	sudo ~/Downloads/App\ Images/VMware-Player-*.x86_64.bundle
 	sudo modprobe vmnet && sudo vmware-networks --start
 	sudo modprobe -a vmw_vmci vmmon
 }

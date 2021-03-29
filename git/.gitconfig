@@ -1,5 +1,5 @@
 [user]
-	name = Lakshya Singh
+	name = Lakshya Singh 
 	email = lakshay.singh1108@gmail.com
 	signingkey = 728951CB5C9F87D81A7070147A35FE32EA599CF7
 [core]
@@ -10,7 +10,8 @@
 	autocorrect = 100
 [alias]
 	co = checkout
-	ci = commit
+	cp = cherry-pick
+	ci = commit -s
 	ca = commit -v --amend
 	br = branch
 	bd = branch -D
@@ -23,7 +24,8 @@
 	dfs = diff --staged
 	df = diff
 	last = log -1 HEAD
-	pu = pull upstream
+	plu = pull upstream
+	plo = pull origin
 	ra = rebase --abort
 	rc = rebase --continue
 	pof = push origin --force-with-lease
@@ -47,3 +49,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[submodule]
+	recurse = true

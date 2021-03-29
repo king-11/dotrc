@@ -10,8 +10,9 @@ source ~/scripts/zsh-interactive-cd.zsh
 #  source /usr/share/zsh/manjaro-zsh-prompt
 #fi
 
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+alias cp="cp -i"                                                # Confirm before overwriting something
+alias df='df -h'                                                # Human-readable sizes
+alias free='free -m'                                            # Show sizes in MB
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -41,4 +42,28 @@ export BROWSER=/usr/bin/brave
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
 eval "$(starship init zsh)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/king11/.anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/king11/.anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/king11/.anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/king11/.anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+alias ls='exa'
+alias cat='bat'
+alias grep='rg'
+alias htop='procs'
