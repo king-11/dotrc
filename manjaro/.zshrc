@@ -258,6 +258,12 @@ alias ls='exa'
 alias cat='bat'
 alias grep='rg'
 
+export CHPL_HOME=~/CS/Development/chapel
+CHPL_BIN_SUBDIR=`"$CHPL_HOME"/util/chplenv/chpl_bin_subdir.py`
+export PATH="$PATH":"$CHPL_HOME/bin/$CHPL_BIN_SUBDIR"
+export MANPATH="$MANPATH":"$CHPL_HOME"/man
+export CHPL_TARGET_CPU=native
+
 eval "$(starship init zsh)"
 #zprof
 #set +x
