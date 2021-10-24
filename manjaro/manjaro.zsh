@@ -44,18 +44,13 @@ function codecs(){
 }
 
 function python_setup(){
-  sudo pacman -S python-pip postgresql python-opengl pyenv
-  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-  mkdir ~/.zfunc
-  poetry completions zsh > ~/.zfunc/_poetry
+  sudo pacman -S python-pip python-opengl pyenv
 }
 
 function node_setup(){
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | zsh
-  export NVM_DIR="$HOME/.nvm"
-  nvm install --lts
-  sudo pacman -S yarn
-  npm install -g gitignore express-generator typescript firebase-tools
+  curl -fsSL https://fnm.vercel.app/install | zsh
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
+  sudo pamac install yarn  
 }
 
 function ruby_setup(){
@@ -74,7 +69,7 @@ function brave_install(){
 }
 
 function ide_setup(){
-  yay -S neovim visual-studio-code-bin insomnia-bin
+  yay -S neovim visual-studio-code-bin insomnia-bin sublime-text
 }
 
 function utility_programs(){
@@ -87,7 +82,7 @@ function display() {
 }
 
 function social_platforms(){
-  yay -S skypeforlinux-stable-bin teamviewer telegram-desktop discord wps-office teams gitter-bin slack-desktop libreoffice-fresh-en-gb
+  yay -S telegram-desktop discord gitter-bin slack-desktop 
 }
 
 function docker_setup(){
@@ -120,4 +115,11 @@ function vmware(){
 	sudo ~/Downloads/App\ Images/VMware-Player-*.x86_64.bundle
 	sudo modprobe vmnet && sudo vmware-networks --start
 	sudo modprobe -a vmw_vmci vmmon
+}
+
+function postgres() {
+  sudo pamac install postgresql
+  sudo chown postgres:postgres -R /var/lib/postgres
+  sudo usermod -aG postgres lord
+  #sudo -iu postgres psql
 }
