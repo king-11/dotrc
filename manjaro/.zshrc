@@ -211,22 +211,26 @@ alias free='free -m'                                            # Show sizes in 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-NODE_GLOBALS+=(node nvm yarn)
+# NVM Config
 
-_load_nvm() {
-    echo "🚨 NVM not loaded! Loading now..."
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-}
+#export NVM_DIR="$HOME/.nvm"
+#NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+#NODE_GLOBALS+=(node nvm yarn pnpm)
 
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "function ${cmd}(){ unset -f ${NODE_GLOBALS[*]}; _load_nvm; unset -f _load_nvm; ${cmd} \$@; }"
-done
-unset cmd NODE_GLOBALS
+#_load_nvm() {
+#    echo "🚨 NVM not loaded! Loading now..."
+#    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#}
 
-#eval "$(pyenv init -)"
+#for cmd in "${NODE_GLOBALS[@]}"; do
+#    eval "function ${cmd}(){ unset -f ${NODE_GLOBALS[*]}; _load_nvm; unset -f _load_nvm; ${cmd} \$@; }"
+#done
+#unset cmd NODE_GLOBALS
+
+# NVM not needed anymore use fnm
+
+eval "$(pyenv init -)"
 
 #export PATH="$PATH:$HOME/.poetry/bin"
 #fpath=($fpath "/home/king11/.zfunc")
@@ -241,17 +245,17 @@ export BROWSER=/usr/bin/brave
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/king11/.anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/king11/.anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/king11/.anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/king11/.anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+#__conda_setup="$('/home/king11/.anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/king11/.anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/king11/.anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/king11/.anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
 # <<< conda initialize <<<
 
 alias ls='exa'
@@ -262,8 +266,16 @@ export CHPL_HOME=~/CS/Development/chapel
 CHPL_BIN_SUBDIR=`"$CHPL_HOME"/util/chplenv/chpl_bin_subdir.py`
 export PATH="$PATH":"$CHPL_HOME/bin/$CHPL_BIN_SUBDIR"
 export MANPATH="$MANPATH":"$CHPL_HOME"/man
-export CHPL_TARGET_CPU=native
+export CHPL_LLVM=none
+export CHPL_TARGET_COMPILER=gnu
 
 eval "$(starship init zsh)"
 #zprof
 #set +x
+
+# fnm
+export PATH=/home/lord/.fnm:$PATH
+eval "`fnm env`"
+
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
