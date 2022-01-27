@@ -6,7 +6,7 @@ function initial_setup(){
   sudo pacman-db-upgrade
   sudo pacman -Rns firefox thunderbird
   sudo pacman -Syu
-  sudo pacman -S git yay gufw gnome-keyring seahorse gnupg
+  sudo pacman -S git yay gufw gnome-keyring seahorse gnupg snapd
   #sudo echo "kdesu python3 /usr/lib/python3.8/site-packages/gufw/gufw.py" >> /bin/gufw
 }
 
