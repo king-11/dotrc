@@ -44,55 +44,71 @@ function codecs(){
 }
 
 function python_setup(){
-  sudo pacman -S python-pip python-opengl pyenv
+  sudo pacman -S python-pip pyenv
 }
 
 function node_setup(){
   curl -fsSL https://fnm.vercel.app/install | zsh
   curl -fsSL https://get.pnpm.io/install.sh | sh -
-  sudo pamac install yarn  
+  sudo pamac build yarn
 }
 
 function ruby_setup(){
   yay -S rbenv ruby-build
 }
 
+function languages() {
+	pamac build go rust julia
+}
+
 function shell(){
-  yay -S zsh zsh-completions alacritty
+  yay -S zsh zsh-completions
   zsh --version
   chsh -s $(which zsh)
   yay -S starship
 }
 
-function brave_install(){
-  sudo pacman -S brave
+function browsers(){
+  sudo pacman -S brave firefox-developer-edition
 }
 
 function ide_setup(){
-  yay -S neovim visual-studio-code-bin insomnia-bin sublime-text
+  yay -S neovim visual-studio-code-bin insomnia-bin sublime-text sublime-merge jetbrains-toolbox
 }
 
 function utility_programs(){
-  yay -S etcher fzf xclip bat mdcat firefox-developer-edition stacer-bin procs ripgrep tokei ytop-bin unrar tree exa ffprobe ffmpeg
+  yay -S etcher fzf xclip bat mdcat stacer-bin procs ripgrep unrar tree exa ffmpeg obs-studio hplip
   sudo snap install heroku --classic
 }
 
-function display() {
+function notes() {
+  yay -S notion-app joplin
+}
+
+function display_kde() {
   yay -S ulauncher awesome-terminal-fonts kvantnum-qt5 latte-dock ttf-ms-fonts
+}
+
+function display() {
+  yay -S ulauncher awesome-terminal-fonts ttf-ms-fonts
 }
 
 function social_platforms(){
   yay -S telegram-desktop discord gitter-bin slack-desktop 
+  yay -S soundaux weffe-git
 }
 
 function docker_setup(){
   sudo pacman -S docker docker-compose
-  # sudo systemctl start docker.service docker.socket\
-  # sudo systemctl enable docker.service docker.socket
+  sudo systemctl start docker.service docker.socket
+  sudo systemctl enable docker.service docker.socket
   sudo docker info
   sudo groupadd docker
-  echo $USER
-  sudo usermod -aG docker targetx
+  sudo usermod -aG docker $USER
+  docker volume create portainer_data
+  docker run -d -p 8000:8000 -p 9443:9443 --name portainer -v /var/run/docker.sock:/var/run/docker.sock
+  docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:latest
+  
 }
 
 function mongo_setup(){
