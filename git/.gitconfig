@@ -1,7 +1,7 @@
 [user]
 	name = Lakshya Singh 
 	email = lakshay.singh1108@gmail.com
-	signingkey = 728951CB5C9F87D81A7070147A35FE32EA599CF7
+	signingkey = D3239BA6109A2CE7 
 [core]
 	editor = nvim
 	username = Lakshya Singh
