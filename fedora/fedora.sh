@@ -27,6 +27,7 @@ function git_install(){
   sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
   sudo dnf install gh
   gpg --import ~/.ssh/gpg-github.asc
+  cargo install difftastic
   #gpg --edit-key <LONGID> ; gpg --list-secret-keys --keyid-format LONG ;copy sec second line
 }
 

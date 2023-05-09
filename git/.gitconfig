@@ -51,3 +51,7 @@
 	required = true
 [submodule]
 	recurse = true
+[push]
+	autoSetupRemote = true
+[diff]
+	external = difft
