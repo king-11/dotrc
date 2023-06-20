@@ -7,16 +7,13 @@
 	username = Lakshya Singh
 	name = Lakshya Singh
 [help]
-	autocorrect = 100
+	autocorrect = 20
 [alias]
 	co = checkout
 	cp = cherry-pick
 	ci = commit -s
 	ca = commit -v --amend
-	br = branch
 	bd = branch -D
-	type = cat-file -t
-	pretty = cat-file -p
 	lg = log --graph
 	ol = log --pretty=oneline --graph --decorate --all
 	ad = add -p
@@ -30,6 +27,7 @@
 	rc = rebase --continue
 	pof = push origin --force-with-lease
 	po = push origin
+	pu = push upstream
 	rs = reset
 	rhh = reset --hard HEAD^
 	rh = reset --hard
