@@ -20,7 +20,6 @@ function time_setup(){
 function rpm_fusion(){
   sudo dnf install   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
   sudo dnf install   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
- 
 }
 
 function git_install(){
@@ -38,10 +37,6 @@ function terminal(){
   sudo dnf install hyper powerline-fonts -y
 }
 
-function nvidia(){
-  sudo dnf install akmod-nvidia
-}
-
 function dev_packages(){
   sudo dnf -y install gdb gcc-c++ clang make automake gcc kernel-devel ffmpeg dnf-plugins-core
   sudo dnf group install "C Development Tools and Libraries"
@@ -57,10 +52,14 @@ function applications(){
 function python(){
   sudo dnf install --assumeyes python3-pip
   curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh
+  pyenv global 3.8
+  curl -sSL https://install.python-poetry.org | python3 -
 }
 
 function nodejs(){
   curl -fsSL https://fnm.vercel.app/install | zsh
+  fnm install v18
+  fnm default v18
   curl -fsSL https://get.pnpm.io/install.sh | sh -
 }
 
@@ -80,7 +79,7 @@ function social_media(){
 function utilites(){
   sudo dnf install flatpak snapd
   sudo dnf install bat stacer procs ripgrep exa duf
-  sudo dnf copr enable elxreno/preload && sudo dnf install preload -y
+  cargo install bottom
 }
 
 function languages() {
