@@ -7,7 +7,7 @@
 	username = Lakshya Singh
 	name = Lakshya Singh
 [help]
-	autocorrect = 20
+	autocorrect = 50
 [alias]
 	co = checkout
 	cp = cherry-pick
@@ -26,13 +26,13 @@
 	ra = rebase --abort
 	rc = rebase --continue
 	pof = push origin --force-with-lease
+  puf = push upstream --force-with-lease
 	po = push origin
 	pu = push upstream
 	rs = reset
 	rhh = reset --hard HEAD^
 	rh = reset --hard
 	s = status -s
-	
 [commit]
 	template = ~/scripts/git/gitmessage
 	gpgsign = true
