@@ -7,14 +7,11 @@ functio initial_setup(){
   echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
   ibus-setup #remove Control Period from emoji to make quick fix shortcut work
 
-  sudo dnf install tlp tlp-rdw
-  sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
-  sudo systemctl enable --now tlp.service
-  sudo dnf remove power-profiles-daemon
-}
-
-function time_setup(){
-  timedatectl set-local-rtc 1
+  #TLP slows down harddisk dont use when performance needed
+  #sudo dnf install tlp tlp-rdw
+  #sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
+  #sudo systemctl enable --now tlp.service
+  #sudo dnf remove power-profiles-daemon
 }
 
 function rpm_fusion(){
@@ -25,15 +22,10 @@ function rpm_fusion(){
 function git_install(){
   sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
   sudo dnf install gh
-  gpg --import ~/.ssh/gpg-github.asc
-  cargo install difftastic
-  #gpg --edit-key <LONGID> ; gpg --list-secret-keys --keyid-format LONG ;copy sec second line
 }
 
 function terminal(){
   sudo dnf install zsh chsh
-  chsh -s $(which zsh)
-  bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
   sudo dnf install hyper powerline-fonts -y
 }
 
@@ -51,16 +43,6 @@ function applications(){
 
 function python(){
   sudo dnf install --assumeyes python3-pip
-  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh
-  pyenv global 3.8
-  curl -sSL https://install.python-poetry.org | python3 -
-}
-
-function nodejs(){
-  curl -fsSL https://fnm.vercel.app/install | zsh
-  fnm install v18
-  fnm default v18
-  curl -fsSL https://get.pnpm.io/install.sh | sh -
 }
 
 function brave(){
@@ -78,15 +60,13 @@ function social_media(){
 
 function utilites(){
   sudo dnf install flatpak snapd
-  sudo dnf install bat stacer procs ripgrep exa duf
-  cargo install bottom
+  sudo dnf install stacer
 }
 
 function languages() {
   sudo dnf install golang
   mkdir -p $HOME/.go
   echo 'export GOPATH=$HOME/.go' >> $HOME/.zshrc
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 function firmware() {
