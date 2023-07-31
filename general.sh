@@ -24,8 +24,8 @@ function generate_ssh() {
 }
 
 function add_ssh_key() {
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/github_rsa
+  eval "$(ssh-agent -s)" &>/dev/null
+  ssh-add ~/.ssh/github_ed &>/dev/null
 }
 
 function time_set() {
