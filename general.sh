@@ -15,7 +15,8 @@ function edit_gpg() {
 }
 
 function gpg_import() {
-  gpg --import ~/.ssh/gpg-github.asc
+  gpg --import public.key
+  gpg --allow-secret-key-import private.key
 }
 
 function generate_ssh() {
