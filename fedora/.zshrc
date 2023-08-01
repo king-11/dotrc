@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=2000
-SAVEHIST=5000
+HISTFILE=/home/king-11/.histfile
+HISTSIZE=5000
+SAVEHIST=10000
 setopt autocd beep extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
