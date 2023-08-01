@@ -109,8 +109,8 @@ zinit light spaceship-prompt/spaceship-prompt
 zplug "plugins/zsh-interactive-cd",   from:oh-my-zsh
 zplug "plugins/colored-man-pages",   from:oh-my-zsh
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-autosuggestions", defer:2
+export JETBRAINS_PATH="/home/king-11/.local/share/JetBrains/Toolbox/scripts"
+export PATH="$JETBRAINS_PATH/bin:$PATH"
 
 zplug load
 
