@@ -48,6 +48,9 @@ bindkey '^[OF' end-of-line
 eval "$(ssh-agent -s)" &>/dev/null
 ssh-add $HOME/.ssh/github_rsa &>/dev/null
 
+export LOCAL_BIN="/home/king-11/.local/bin"
+export PATH="$LOCAL_BIN:$PATH"
+
 ### Added by Zinit's installer
 
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
