@@ -18,25 +18,33 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 export PATH=/home/king-11/.fnm:$PATH
-eval "`fnm env`"
+eval "$(fnm env)"
 
 export GOPATH=$HOME/.go
+export PATH=$PATH:$HOME/.go/bin
 
-export BROWSER=/usr/bin/brave-browser
+export BROWSER=/usr/bin/microsoft-edge
 
+alias ll='exa -la --icons --git'
 alias ls='exa --icons'
 alias cat='bat'
 alias grep='rg'
 alias cp="cp -i"
-alias df="df -h"
-alias ghs="ssh-add $HOME/.ssh/github_rsa &>/dev/null"
+alias docker="podman"
+alias top="btm"
+alias df="duf"
+alias du="dust"
+alias ps="procs"
+
+mkc() {
+	mkdir $1 && cd $1
+}
 
 bindkey '^[[H' beginning-of-line
 bindkey '^[OH' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[OF' end-of-line
 
-eval "$(starship init zsh)"
 eval "$(ssh-agent -s)" &>/dev/null
 ssh-add $HOME/.ssh/github_rsa &>/dev/null
 
