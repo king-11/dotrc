@@ -106,14 +106,13 @@ zinit light spaceship-prompt/spaceship-prompt
 
 # zinit end
 
-zplug "plugins/zsh-interactive-cd",   from:oh-my-zsh
-zplug "plugins/colored-man-pages",   from:oh-my-zsh
+source /home/king-11/.cargo/env
 
 export JETBRAINS_PATH="/home/king-11/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$JETBRAINS_PATH/bin:$PATH"
 
-zplug load
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # pnpm
 export PNPM_HOME="/home/king-11/.local/share/pnpm"
 case ":$PATH:" in
