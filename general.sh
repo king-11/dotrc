@@ -16,7 +16,7 @@ function edit_gpg() {
 
 function gpg_import() {
   gpg --import public.key
-  gpg --allow-secret-key-import private.key
+  gpg --import private.key
 }
 
 function generate_ssh() {
