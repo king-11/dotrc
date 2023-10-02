@@ -37,7 +37,7 @@ eval "$(ssh-agent -s)" &>/dev/null
 ssh-add ~/.ssh/microsoft_rsa &>/dev/null
 ssh-add ~/.ssh/github_ed &>/dev/null
 
-alias ls='exa --icons'
+alias ls='eza --icons'
 alias cat='bat'
 alias grep='rg'
 alias cp="cp -i"

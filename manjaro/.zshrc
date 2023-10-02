@@ -20,7 +20,7 @@ eval $(keychain --eval -q ~/.ssh/github_rsa ~/.ssh/heroku_rsa)
 
 export BROWSER=/usr/bin/brave
 
-alias ls='exa --icons'
+alias ls='eza --icons'
 alias cat='bat'
 alias grep='rg'
 alias cp="cp -i"

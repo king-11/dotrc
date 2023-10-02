@@ -25,8 +25,8 @@ export PATH=$PATH:$HOME/.go/bin
 
 export BROWSER=/usr/bin/microsoft-edge
 
-alias ll='exa -la --icons --git'
-alias ls='exa --icons'
+alias ll='eza -la --icons --git'
+alias ls='eza --icons'
 alias cat='bat'
 alias grep='rg'
 alias cp="cp -i"

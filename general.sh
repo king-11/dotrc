@@ -83,7 +83,7 @@ function brew_install() {
 }
 
 function brew_install_packages() {
-  brew install bottom bat ripgrep exa procs dust duf
+  brew install bottom bat ripgrep eza procs dust duf
   brew install difftastic
   brew install zellij
   brew install nushell
