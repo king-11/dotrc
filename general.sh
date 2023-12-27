@@ -87,7 +87,8 @@ function brew_install_packages() {
   brew install difftastic
   brew install zellij
   brew install nushell
-  brew install teaxyz/pkgs/tea-cli
+  brew install teaxyz/pkgs/pkgx
+  brew install fzf
 }
 
 function install_tlp_ui() {
