@@ -20,17 +20,13 @@ eval "$(pyenv virtualenv-init -)"
 export PATH=/home/king-11/.fnm:$PATH
 eval "$(fnm env)"
 
-export GOPATH=$HOME/.go
-export PATH=$PATH:$HOME/.go/bin
-
-export BROWSER=/usr/bin/microsoft-edge
+export BROWSER=/usr/bin/brave-browser
 
 alias ll='eza -la --icons --git'
 alias ls='eza --icons'
 alias cat='bat'
 alias grep='rg'
 alias cp="cp -i"
-alias docker="podman"
 alias top="btm"
 alias df="duf"
 alias du="dust"
@@ -45,8 +41,16 @@ bindkey '^[OH' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[OF' end-of-line
 
-eval "$(ssh-agent -s)" &>/dev/null
+eval '$(ssh-agent -s)' &>/dev/null
 ssh-add $HOME/.ssh/github_rsa &>/dev/null
+
+# pnpm
+export PNPM_HOME="/home/king-11/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 export LOCAL_BIN="/home/king-11/.local/bin"
 export PATH="$LOCAL_BIN:$PATH"
@@ -111,12 +115,7 @@ source /home/king-11/.cargo/env
 export JETBRAINS_PATH="/home/king-11/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$JETBRAINS_PATH/bin:$PATH"
 
+export GOPATH=$HOME/.go
+export PATH=$PATH:$HOME/.go/bin
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-# pnpm
-export PNPM_HOME="/home/king-11/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
