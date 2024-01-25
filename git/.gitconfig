@@ -7,34 +7,36 @@
 	username = Lakshya Singh
 	name = Lakshya Singh
 [help]
-	autocorrect = 50
+	autocorrect = 100
 [alias]
 	co = checkout
 	cp = cherry-pick
 	ci = commit -s
 	ca = commit -v --amend
+  bv = branch -v
 	bd = branch -D
 	lg = log --graph
-	ol = log --pretty=oneline --graph --decorate --all
+	ol = log --pretty=oneline --decorate
 	ad = add -p
 	aa = add .
 	dfs = diff --staged
 	df = diff
 	last = log -1 HEAD
 	plu = pull upstream
-	plo = pull origin
+  plo = pull origin --rebase=merges
 	ra = rebase --abort
 	rc = rebase --continue
 	pof = push origin --force-with-lease
-  puf = push upstream --force-with-lease
+	puf = push upstream --force-with-lease
 	po = push origin
 	pu = push upstream
 	rs = reset
-	rhh = reset --hard HEAD^
-	rh = reset --hard
+	rhh = reset --hard HEAD
+  rh = reset --hard
 	s = status -s
+
 [commit]
-	template = ~/scripts/git/gitmessage
+	template = ~/projects/dotrc/git/gitmessage
 	gpgsign = true
 [pull]
 	ff = only
