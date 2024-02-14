@@ -36,7 +36,7 @@
 	s = status -s
 
 [commit]
-	template = ~/projects/dotrc/git/gitmessage
+	template = ~/projects/dotrc/config/git/gitmessage
 	gpgsign = true
 [pull]
 	ff = only
