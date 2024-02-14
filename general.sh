@@ -1,3 +1,5 @@
+#!/bin/sh
+
 function create_gpg() {
   gpg --full-generate-key #4096 size
 }
@@ -57,7 +59,8 @@ function pnpm_install(){
 
 function python_install() {
   curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh
-  pyenv global 3.8
+  pyenv install 3.11
+  pyenv global 3.11
 }
 
 function poetry_install() {
@@ -92,5 +95,19 @@ function brew_install_packages() {
 }
 
 function install_tlp_ui() {
-  flatpak install flathub tlpui
+  flatpak install flathub tlpui discord
+}
+
+function nvchad_config() {
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+}
+
+function kitty_install() {
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/\
+  cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/\
+  cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/\
+  sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop\
+  sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+  cp ~/projects/dotrc/config/kitty ~/.config/kitty
 }
