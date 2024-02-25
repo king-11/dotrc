@@ -8,6 +8,7 @@ functio initial_setup(){
   echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf\
   echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
   ibus-setup #remove Control Period from emoji to make quick fix shortcut work
+  sudo dnf install dnf-plugins-core
 
   #TLP slows down harddisk dont use when performance needed
   #sudo dnf install tlp tlp-rdw
@@ -78,4 +79,9 @@ function firmware() {
   sudo fwupdmgr refresh --force
   sudo fwupdmgr get-updates
   sudo fwupdmgr update
+}
+
+function docker() {
+  sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 }
