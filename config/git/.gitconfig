@@ -6,8 +6,6 @@
 	editor = nvim
 	username = Lakshya Singh
 	name = Lakshya Singh
-[help]
-	autocorrect = 100
 [alias]
 	co = checkout
 	cp = cherry-pick
@@ -34,24 +32,40 @@
 	rhh = reset --hard HEAD
   rh = reset --hard
 	s = status -s
-
+[branch]
+  sort = -committerdate
+[color]
+	ui = auto
 [commit]
 	template = ~/projects/dotrc/config/git/gitmessage
 	gpgsign = true
-[pull]
-	ff = only
-[init]
-	defaultBranch = main
-[color]
-	ui = auto
+[diff]
+	external = difft
+  algorithm = histogram
+[fetch]
+  prune = true
+  prunetags = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[help]
+	autocorrect = 100
+[init]
+	defaultBranch = main
+[log]
+  date = iso
+[merge]
+  conflictstyle = zdiff3
+  tool = meld
+[pull]
+	rebase = true
+[push]
+  default = current
+[rebase]
+  autostash = true
+[rerere]
+  enabled = true
 [submodule]
 	recurse = true
-[push]
-	autoSetupRemote = true
-[diff]
-	external = difft
