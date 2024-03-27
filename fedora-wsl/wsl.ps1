@@ -26,15 +26,3 @@ function enter_fedora{
 function terminate_fedora() {
   wsl -t fedora
 }
-
-function enable_systemd() {
-  echo -e "[boot]\nsystemd = true" | sudo tee -a /etc/wsl.conf
-}
-
-function pkg_config_fix() {
-  brew update\
-  brew upgrade\
-  brew remove --ignore-dependencies pkg-config\
-  brew install -vds --env=super pkg-config
-}
-
