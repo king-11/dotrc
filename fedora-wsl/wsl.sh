@@ -33,3 +33,10 @@ function libcuda_fix() {
   sudo ln -s /usr/lib/wsl/lib/* /usr/lib/wsl/lib2
   echo /usr/lib/wsl/lib2 | sudo tee /etc/ld.so.conf.d/ld.wsl.conf
 }
+
+function pkg_config_fix() {
+  brew update\
+  brew upgrade\
+  brew remove --ignore-dependencies pkg-config\
+  brew install -vds --env=super pkg-config
+}
