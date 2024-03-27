@@ -7,13 +7,13 @@ function setup_user_and_password() {
 }
 
 function default_user() {
-  printf"\n[user]\ndefault = king-11\n"| sudo tee-a/etc/wsl.conf
+  printf"\n[user]\ndefault = king-11\n"| sudo tee -a /etc/wsl.conf
 }
 
 function man_pages() {
-  grep-vnodocs /etc/dnf/dnf.conf | sudo tee/etc/dnf/dnf.conf
+  grep -v nodocs /etc/dnf/dnf.conf | sudo tee/etc/dnf/dnf.conf
   sudo dnf install -y man man-pages
-  for pkg in$(dnf repoquery --installed--qf"%{name}");do sudo dnf reinstall -qy$pkg;done
+  for pkg in $(dnf repoquery --installed --qf "%{name}"); do sudo dnf reinstall -qy $pkg; done
 }
 
 function packages() {
