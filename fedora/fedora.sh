@@ -28,7 +28,7 @@ function git_install(){
 }
 
 function terminal(){
-  sudo dnf install zsh chsh
+  sudo dnf install zsh
   sudo dnf install hyper powerline-fonts
 }
 
@@ -56,7 +56,8 @@ function applications(){
   sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
   sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
   sudo dnf install brave-browser
-
+  # meld for git merge
+  sudo dnf install meld
 }
 
 function python(){

@@ -21,6 +21,12 @@ function packages() {
   sudo dnf groupinstall "Development Tools" "Development Libraries"
   sudo dnf -y install make automake gcc gcc-c++ kernel-devel
   sudo dnf -y install zlib-devel libffi-devel openssl-devel bzip2-devel readline-devel sqlite-devel xz-devel
+  sudo dnf install procps
+}
+
+function wsl_utilities() {
+  sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/wslutilities/RHEL_7/home:wslutilities.repo
+  sudo dnf install wslu
 }
 
 function packages_clean() {
