@@ -58,7 +58,7 @@ function pnpm_install(){
 }
 
 function python_install() {
-  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh
+  curl -L https://pyenv.run | zsh
   pyenv install 3.11
   pyenv global 3.11
 }
@@ -99,7 +99,8 @@ function install_tlp_ui() {
 }
 
 function nvchad_config() {
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+  git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+  rm -rf ~/.config/nvim/.git
 }
 
 function kitty_install() {
