@@ -1,2 +1,3 @@
 Host *
   IPQoS=none
+  ServerAliveInterval 240

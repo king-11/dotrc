@@ -4,8 +4,8 @@ functio initial_setup(){
   sudo dnf check-update
   sudo dnf makecache --refresh
   sudo dnf upgrade
-  echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf\
-  echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf\
+  echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
+  echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
   echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
   ibus-setup #remove Control Period from emoji to make quick fix shortcut work
   sudo dnf install dnf-plugins-core
