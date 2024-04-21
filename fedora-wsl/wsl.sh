@@ -22,6 +22,8 @@ function packages() {
   sudo dnf -y install make automake gcc gcc-c++ kernel-devel
   sudo dnf -y install zlib-devel libffi-devel openssl-devel bzip2-devel readline-devel sqlite-devel xz-devel
   sudo dnf install procps
+  # networking tools
+  sudo dnf install iproute iputils hostname
 }
 
 function wsl_utilities() {
