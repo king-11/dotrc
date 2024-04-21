@@ -32,6 +32,11 @@
 	rhh = reset --hard HEAD
   rh = reset --hard
 	s = status -s
+  st = stash
+  sta = stash --include-untracked
+  std = stash drop
+  stl = stash list
+  stp = stash pop
 [branch]
   sort = -committerdate
 [color]
