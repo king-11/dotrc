@@ -86,12 +86,19 @@ function brew_install() {
 }
 
 function brew_install_packages() {
-  brew install bottom bat ripgrep eza procs dust duf
-  brew install difftastic
-  brew install zellij
-  brew install nushell
-  brew install teaxyz/pkgs/pkgx
-  brew install fzf
+  brew install bat \
+    bottom \
+    ripgrep \
+    eza \
+    procs \
+    dust \
+    duf \
+    difftastic \
+    zellij \
+    zoxide \
+    atuin \
+    fzf \
+    teaxyz/pkgs/pkgx
 }
 
 function install_tlp_ui() {

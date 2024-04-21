@@ -1,6 +1,6 @@
 #!/bin/sh
 
-functio initial_setup(){
+function initial_setup(){
   sudo dnf check-update
   sudo dnf makecache --refresh
   sudo dnf upgrade

@@ -23,7 +23,7 @@ Along with OS specific folder there is a [common script](./general.sh) which is 
 
 ## Brew Packages
 
-I make full use of [Homebrew](https://brew.sh/) which provides easy installation and updates for all my command line softwares. Alongwith that some CLIs I don't prefer installing and they are used on the fly with help of [pkgx](https://github.com/pkgxdev/pkgx). Packages that are useful for CLI usage are:
+I make full use of [Homebrew](https://brew.sh/) which provides easy installation and updates for all my command line softwares. Packages that are useful for CLI usage are:
 - bottom: A customizable cross-platform graphical process/system monitor for the terminal.
 - bat: A cat(1) clone with syntax highlighting and Git integration.
 - ripgrep: ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern.
@@ -33,10 +33,26 @@ I make full use of [Homebrew](https://brew.sh/) which provides easy installation
 - duf: Disk Usage/Free Utility (Linux, BSD, macOS & Windows)
 - difftastic: Difftastic is a structural diff tool that compares files based on their syntax.
 - zellij: Terminal multiplexer
-- nushell: A new type of shell.
-- fzf: fzf is a general-purpose command-line fuzzy finder.
+- zoxide: zoxide is a smarter cd command, inspired by z and autojump.
+- atuin: Magical shell history.
+- fzf: A command-line fuzzy finder
 
-Most of these tools are rust rewrites except for duf and fzf.
+Most of these tools are rust rewrites except for `duf` and `z`, I create an alias for them in my shell configuration file.
+
+Note: Instead of autin, mcfly is also a good option to try.
+
+## pkgx
+
+[pkgx](https://github.com/pkgxdev/pkgx) is a command line tool developed by creator of Homebrew. It can run any command line tool that you need it to run and you can even specify specific version during the run. The best part about is that doesn't install anything globally on your system. So it's all clean and on the fly.
+
+There are a plethora of new command line tools that I prefer using with help of pkgx, as below:
+- fd: A simple, fast and user-friendly alternative to 'find'
+- sd: Intuitive find & replace CLI (sed alternative)
+- jq: Command-line JSON processor
+- asdf: asdf is a CLI tool that can manage multiple language runtime versions on a per-project basis.
+- hyperfine: A command-line benchmarking tool.
+- ctop: Top-like interface for container metrics
+- glow: Render markdown on the CLI, with pizzazz! 💅🏻
 
 ## Terminal Hacks
 
