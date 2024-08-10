@@ -1,29 +1,19 @@
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+export HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=10000
-setopt autocd beep extendedglob
+setopt autocd beep extendedglob nomatch notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/king-11/.zshrc'
+zstyle :compinstall filename '/home/king11/.zshrc'
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-export PATH=/home/king-11/.fnm:$PATH
-eval "$(fnm env)"
-
-export BROWSER=/usr/bin/brave-browser
-
-alias ll='eza -la --icons --git'
-alias ls='eza --icons'
+alias ll='eza -la --icons --color'
+alias ls='eza --icons --color'
 alias cat='bat'
 alias grep='rg'
 alias cp="cp -i"
@@ -31,6 +21,8 @@ alias top="btm"
 alias df="duf"
 alias du="dust"
 alias ps="procs"
+alias diff="difft"
+alias find="fd"
 
 mkc() {
 	mkdir $1 && cd $1
@@ -40,20 +32,6 @@ bindkey '^[[H' beginning-of-line
 bindkey '^[OH' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[OF' end-of-line
-
-eval '$(ssh-agent -s)' &>/dev/null
-ssh-add $HOME/.ssh/github_rsa &>/dev/null
-
-# pnpm
-export PNPM_HOME="/home/king-11/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-export LOCAL_BIN="/home/king-11/.local/bin"
-export PATH="$LOCAL_BIN:$PATH"
 
 ### Added by Zinit's installer
 
@@ -72,25 +50,11 @@ autoload -Uz _zinit
 # End of Zinit's installer
 
 # zinit plugins
-
 zinit ice wait blockf lucid
-zinit light rupa/z
 
 # cd
 zinit ice wait lucid
 zinit light changyuheng/zsh-interactive-cd
-
-# Don't bind these keys until ready
-bindkey -r '^[[A'
-bindkey -r '^[[B'
-function __bind_history_keys() {
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-}
-
-# History substring searching
-zinit ice wait lucid atload'__bind_history_keys'
-zinit light zsh-users/zsh-history-substring-search
 
 # autosuggestions, trigger precmd hook upon load
 zinit ice wait lucid atload'_zsh_autosuggest_start'
@@ -110,12 +74,48 @@ zinit light spaceship-prompt/spaceship-prompt
 
 # zinit end
 
-source /home/king-11/.cargo/env
+# cargo
+source /home/king11/.cargo/env
 
-export JETBRAINS_PATH="/home/king-11/.local/share/JetBrains/Toolbox/scripts"
+# jetbrains
+export JETBRAINS_PATH="/home/king11/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$JETBRAINS_PATH/bin:$PATH"
 
+# go
 export GOPATH=$HOME/.go
 export PATH=$PATH:$HOME/.go/bin
 
+# linuxbrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# fnm
+export PATH="/home/king11/.local/share/fnm:$PATH"
+eval "`fnm env`"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# pnpm
+export PNPM_HOME="/home/king11/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# atuin
+eval "$(atuin init zsh)"
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# fzf
+eval "$(fzf --zsh)"
+
+export LOCAL_BIN="/home/king11/.local/bin"
+export PATH="$LOCAL_BIN:$PATH"
+export BROWSER=/usr/bin/brave-browser
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

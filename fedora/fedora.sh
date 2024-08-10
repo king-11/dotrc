@@ -3,11 +3,11 @@
 function initial_setup(){
   sudo dnf check-update
   sudo dnf makecache --refresh
-  sudo dnf upgrade
   echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
   echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
   echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
   ibus-setup #remove Control Period from emoji to make quick fix shortcut work
+  sudo dnf upgrade
   sudo dnf install dnf-plugins-core
 
   #TLP slows down harddisk dont use when performance needed
@@ -33,7 +33,7 @@ function terminal(){
 }
 
 function dev_packages(){
-  sudo dnf -y install gdb gcc-c++ clang make automake gcc kernel-devel ffmpeg dnf-plugins-core
+  sudo dnf -y install gdb gcc-c++ clang make automake gcc kernel-devel ffmpeg dnf-plugins-core mold clang protobuf-compiler
   sudo dnf group install "C Development Tools and Libraries"
 }
 
@@ -46,7 +46,8 @@ function applications(){
   # syncthing
   sudo dnf install syncthing
   # cloudflare-warp 
-  curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repos
+  curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo
+  sudo dnf update
   sudo dnf install cloudflare-warp
   # vscode
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -66,7 +67,7 @@ function python(){
 
 function utilites(){
   sudo dnf install flatpak snapd
-  sudo dnf install stacer
+  sudo dnf install stacer xclip
   sudo dnf install neovim python3-neovim 
 }
 
@@ -85,4 +86,9 @@ function firmware() {
 function docker() {
   sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
   sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+}
+
+function yubikey() {
+  sudo dnf install usbutils pcsc-lite yubikey-manager
+  sudo systemctl enable --now pcscd
 }
