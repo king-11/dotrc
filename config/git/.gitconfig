@@ -1,7 +1,7 @@
 [user]
-	name = Lakshya Singh 
+	name = Lakshya Singh
 	email = lakshay.singh1108@gmail.com
-	signingkey = D3239BA6109A2CE7 
+	signingkey = 6491470634BAE613
 [core]
 	editor = nvim
 	username = Lakshya Singh
@@ -29,8 +29,7 @@
 	po = push origin
 	pu = push upstream
 	rs = reset
-	rhh = reset --hard HEAD
-  rh = reset --hard
+	rh = reset --hard
 	s = status -s
   st = stash
   sta = stash --include-untracked
@@ -45,8 +44,9 @@
 	template = ~/projects/dotrc/config/git/gitmessage
 	gpgsign = true
 [diff]
-	external = difft
+  external = difft
   algorithm = histogram
+  submodule = diff
 [fetch]
   prune = true
   prunetags = true
@@ -72,5 +72,7 @@
   autostash = true
 [rerere]
   enabled = true
+[status]
+  submoduleSummary = true
 [submodule]
 	recurse = true
