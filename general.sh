@@ -40,7 +40,7 @@ function config_terminal() {
 }
 
 function rust_install() {
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh  
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 function fnm_install(){
@@ -48,8 +48,8 @@ function fnm_install(){
 }
 
 function nodejs_install() {
-  fnm install v18
-  fnm default v18
+  fnm install v20
+  fnm default v20
 }
 
 function pnpm_install(){
@@ -59,12 +59,13 @@ function pnpm_install(){
 
 function python_install() {
   curl -L https://pyenv.run | zsh
-  pyenv install 3.11
-  pyenv global 3.11
+  # install build deps https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+  pyenv install 3.12
+  pyenv global 3.12
 }
 
 function poetry_install() {
-  curl -sSL https://install.python-poetry.org | python3 -
+  pipx install poetry
 }
 
 function poetry_update(){
@@ -98,11 +99,12 @@ function brew_install_packages() {
     zoxide \
     atuin \
     fzf \
-    teaxyz/pkgs/pkgx
+    pkgxdev/made/pkgx \
+    pipx
 }
 
 function install_tlp_ui() {
-  flatpak install flathub tlpui discord
+  flatpak install flathub tlpui com.discordapp.Discord im.riot.Riot md.obsidian.Obsidian
 }
 
 function nvchad_config() {
@@ -111,11 +113,32 @@ function nvchad_config() {
 }
 
 function kitty_install() {
-  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-  ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/\
-  cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/\
-  cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/\
-  sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop\
-  sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+  # Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is install_tlp_ui
+  # your system-wide PATH)
+  ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+  # Place the kitty.desktop file somewhere it can be found by the OS
+  cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+  # Update the paths to the kitty and its icon in the kitty desktop file(s)
+  sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+  sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+  # Make xdg-terminal-exec (and hence desktop environments that support it use kitty)
+  echo 'kitty.desktop' > ~/.config/xdg-terminals.list
   cp ~/projects/dotrc/config/kitty ~/.config/kitty
+}
+
+function zed_install() {
+  curl -f https://zed.dev/install.sh | sh
+}
+
+function udev_rules() {
+  sudo curl https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/20-hw1.rules -o /etc/udev/rules.d/20-hw1.rules
+  sudo curl https://raw.githubusercontent.com/trezor/trezor-common/master/udev/51-trezor.rules -o /etc/udev/rules.d/51-trezor.rules
+  sudo curl https://raw.githubusercontent.com/Yubico/libfido2/main/udev/70-u2f.rules -o /etc/udev/rules.d/70-u2f.rules
+}
+
+function docker_access() {
+  sudo groupadd docker;
+  sudo usermod -aG docker $USER;
+  newgrp docker
+  sudo systemctl enable --now docker.service containerd.service
 }
