@@ -12,6 +12,10 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# load module and run zprof for finding which operation takes longest
+# for i in $(seq 1 10); do time $SHELL -i -c exit; done
+# zmodload zsh/zprof
+
 alias ll='eza -lah --icons=always --git --color $@'
 alias ls='eza --icons=always --git --color $@'
 alias cat='bat'
@@ -52,9 +56,10 @@ autoload -Uz _zinit
 # zinit plugins
 zinit ice wait blockf lucid
 
-# cd
-zinit ice wait lucid
-zinit light changyuheng/zsh-interactive-cd
+# interactive cd
+# not needed anymore as we use zoxide
+# zinit ice wait lucid
+# zinit light changyuheng/zsh-interactive-cd
 
 # autosuggestions, trigger precmd hook upon load
 zinit ice wait lucid atload'_zsh_autosuggest_start'
@@ -70,7 +75,9 @@ zinit ice wait lucid atinit'zpcompinit; zpcdreplay'
 zinit light zdharma/fast-syntax-highlighting
 
 zinit snippet OMZP::colored-man-pages
-zinit light spaceship-prompt/spaceship-prompt
+
+zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
+zinit load starship/starship
 
 # zinit end
 
@@ -91,12 +98,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # fnm
 export PATH="/home/king11/.local/share/fnm:$PATH"
 eval "`fnm env`"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # pnpm
 export PNPM_HOME="/home/king11/.local/share/pnpm"
