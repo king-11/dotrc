@@ -42,6 +42,7 @@
   stp = stash pop
 [branch]
   sort = -committerdate
+  autosetuprebase = always
 [color]
   ui = auto
 [commit]
@@ -50,7 +51,7 @@
 [diff]
   external = difft
   algorithm = histogram
-  submodule = diff
+  submodule = log
 [fetch]
   prune = true
   prunetags = true
