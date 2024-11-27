@@ -12,8 +12,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-alias ll='eza -la --icons --color'
-alias ls='eza --icons --color'
+alias ll='eza -lah --icons=always --git --color $@'
+alias ls='eza --icons=always --git --color $@'
 alias cat='bat'
 alias grep='rg'
 alias cp="cp -i"
