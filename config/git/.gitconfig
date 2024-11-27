@@ -1,16 +1,17 @@
 [user]
-	name = Lakshya Singh
-	email = lakshay.singh1108@gmail.com
-	signingkey = 6491470634BAE613
+  name = Lakshya Singh
+  email = lakshay.singh1108@gmail.com
+  signingkey = 6491470634BAE613
 [core]
-	editor = nvim
-	username = Lakshya Singh
-	name = Lakshya Singh
+  editor = nvim
+  username = Lakshya Singh
+  name = Lakshya Singh
 [alias]
-	co = checkout
-	cp = cherry-pick
-	ci = commit -s
-	ca = commit -v --amend
+  co = checkout
+  ct = checkout -t
+  cp = cherry-pick
+  ci = commit -s
+  ca = commit -v --amend
   bv = branch -v
   bd = branch -D
   lg = log --graph
@@ -42,10 +43,10 @@
 [branch]
   sort = -committerdate
 [color]
-	ui = auto
+  ui = auto
 [commit]
-	template = ~/projects/dotrc/config/git/gitmessage
-	gpgsign = true
+  template = ~/projects/dotrc/config/git/gitmessage
+  gpgsign = true
 [diff]
   external = difft
   algorithm = histogram
@@ -54,21 +55,21 @@
   prune = true
   prunetags = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [help]
-	autocorrect = 100
+  autocorrect = 100
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [log]
   date = iso
 [merge]
   conflictstyle = zdiff3
   tool = meld
 [pull]
-	rebase = true
+  rebase = true
 [push]
   default = current
 [rebase]
@@ -78,4 +79,4 @@
 [status]
   submoduleSummary = true
 [submodule]
-	recurse = true
+  recurse = true
